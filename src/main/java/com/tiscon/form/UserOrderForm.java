@@ -13,46 +13,50 @@ import javax.validation.constraints.NotNull;
  */
 public class UserOrderForm {
 
-    @NotBlank
+    @NotBlank(message = "名前が入力されていません")
     private String customerName;
 
-    @NotBlank
-    @Numeric
+    @NotBlank(message = "電話番号が入力されていません")
+    @Numeric(message = "電話番号は半角数字で入力してください。(ハイフン無し)")
     private String tel;
 
     @Email
-    @NotBlank
+    @NotBlank(message = "メールアドレスが入力されていません")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "転居元住所(都道府県)が入力されていません")
     private String oldPrefectureId;
 
-    @NotBlank
+    @NotBlank(message = "転居元住所(市町村以下)が入力されていません")
     private String oldAddress;
 
-    @NotBlank
+    @NotBlank(message = "転居先住所(都道府県)が入力されていません")
     private String newPrefectureId;
 
-    @NotBlank
+    @NotBlank(message = "転居先住所(市町村以下)が入力されていません")
     private String newAddress;
 
-    @Numeric
-    @NotBlank
+
+    @NotBlank(message = "引越し月が入力されていません")
+    private String month;
+
+    @Numeric(message = "段ボールの個数は半角数字で入力してください")
+    @NotBlank(message = "段ボールの個数が入力されていません")
     private String box;
 
-    @Numeric
-    @NotBlank
+    @Numeric(message = "ベッドの台数は半角数字で入力してください")
+    @NotBlank(message = "ベッドの台数が入力されていません")
     private String bed;
 
-    @Numeric
-    @NotBlank
+    @Numeric(message = "自転車の台数は半角数字で入力してください")
+    @NotBlank(message = "自転車の台数が入力されていません")
     private String bicycle;
 
-    @Numeric
-    @NotBlank
+    @Numeric(message = "洗濯機の台数は半角数字で入力してください")
+    @NotBlank(message = "洗濯機の台数が入力されていません")
     private String washingMachine;
 
-    @NotNull
+    @NotNull(message = "洗濯機の設置工事申し込みを選択してください")
     private boolean washingMachineInstallation;
 
     public String getCustomerName() {
