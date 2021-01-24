@@ -7,6 +7,7 @@ import com.tiscon.domain.Customer;
 import com.tiscon.domain.CustomerOptionService;
 import com.tiscon.domain.CustomerPackage;
 import com.tiscon.dto.UserOrderDto;
+import com.tiscon.form.UserOrderForm;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,9 +33,7 @@ public class EstimateService {
      *
      * @param estimateDAO EstimateDaoクラス
      */
-    public EstimateService(EstimateDao estimateDAO) {
-        this.estimateDAO = estimateDAO;
-    }
+    public EstimateService(EstimateDao estimateDAO) { this.estimateDAO = estimateDAO;    }
 
     /**
      * 見積もり依頼をDBに登録する。
@@ -69,10 +68,14 @@ public class EstimateService {
      * @param dto 見積もり依頼情報
      * @return 概算見積もり結果の料金
      */
-    public Integer getPrice(UserOrderDto dto) {
+    public Integer getPrice(UserOrderDto dto, UserOrderForm userOrderForm) {
         double distance = estimateDAO.getDistance(dto.getOldPrefectureId(), dto.getNewPrefectureId());
         // 小数点以下を切り捨てる
         int distanceInt = (int) Math.floor(distance);
+        System.out.println(userOrderForm.getMovingMonth());
+        System.out.println(userOrderForm.getTel());
+        System.out.println(userOrderForm.getOldPrefectureId());
+
 
         // 距離当たりの料金を算出する
         int priceForDistance = distanceInt * PRICE_PER_DISTANCE;

@@ -38,7 +38,7 @@ public class UserOrderForm {
 
 
 //    @NotBlank(message = "引越し月が入力されていません")
-    private String moving_month;
+    private String movingMonth;
 
     @Numeric(message = "段ボールの個数は半角数字で入力してください")
     @NotBlank(message = "段ボールの個数が入力されていません")
@@ -59,9 +59,13 @@ public class UserOrderForm {
     @NotNull(message = "洗濯機の設置工事申し込みを選択してください")
     private boolean washingMachineInstallation;
 
-    public String getCustomerName() {
-        return customerName;
-    }
+    //追記
+    public String getMovingMonth() {return movingMonth;}
+
+    //追記
+    public void setMovingMonth(String movingMonth) {this.movingMonth = movingMonth;}
+
+    public String getCustomerName() { return customerName;  }
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;

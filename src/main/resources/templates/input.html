@@ -58,9 +58,9 @@
                  placeholder="(例)札幌市南区1"/>
         </div>
         <div class="form-group">
-          <label for="moving_month">引越し月</label>
-          <select id="moving_month" name=”moving_month” class="form-control">
-            <option th:each="i : ${#numbers.sequence(1, 12)}" th:value="${i}">[[${i}]]月</option>
+          <label for="movingMonth">引越し月</label>
+          <select id="movingMonth" name=”movingMonth” class="form-control">
+            <option th:each="i : ${#numbers.sequence(1, 12)}" th:value="${i}" th:field="*{movingMonth}">[[${i}]]月</option>
           </select>
         </div>
 
