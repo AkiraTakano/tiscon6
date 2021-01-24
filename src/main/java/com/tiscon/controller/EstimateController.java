@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.FieldError;
 
 /**
  * 引越し見積もりのコントローラークラス。
@@ -132,10 +133,19 @@ public class EstimateController {
         BeanUtils.copyProperties(userOrderForm, dto);
         Integer price = estimateService.getPrice(dto);
 
-        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
-        model.addAttribute("userOrderForm", userOrderForm);
-        model.addAttribute("price", price);
-        return "result";
+        if (price != -1) {
+            model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+            model.addAttribute("userOrderForm", userOrderForm);
+            model.addAttribute("price", price);
+            return "result";
+        }else{
+            FieldError fieldError = new FieldError(result.getObjectName(), "fieldName", "荷物が多過ぎます");
+            result.addError(fieldError);
+
+            model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+            model.addAttribute("userOrderForm", userOrderForm);
+            return "confirm";
+        }
     }
 
     /**
