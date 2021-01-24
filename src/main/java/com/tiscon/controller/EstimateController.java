@@ -77,7 +77,7 @@ public class EstimateController {
      */
     @PostMapping(value = "submit", params = "confirm")
     String confirm(@Validated UserOrderForm userOrderForm, BindingResult result, Model model) {
-
+        System.out.println(result);
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
         return "confirm";
@@ -139,7 +139,7 @@ public class EstimateController {
             model.addAttribute("price", price);
             return "result";
         }else{
-            FieldError fieldError = new FieldError(result.getObjectName(), "fieldName", "荷物が多過ぎます");
+            FieldError fieldError = new FieldError(result.getObjectName(), "boxError", "荷物が多過ぎます");
             result.addError(fieldError);
 
             model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
