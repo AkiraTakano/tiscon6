@@ -37,7 +37,8 @@ public class UserOrderForm {
     private String newAddress;
 
 
-//    @NotBlank(message = "引越し月が入力されていません")
+    @Numeric(message = "引っ越し月は半角数字で入力してください")
+    @NotBlank(message = "引越し月が入力されていません")
     private String movingMonth;
 
     @Numeric(message = "段ボールの個数は半角数字で入力してください")

@@ -69,8 +69,17 @@
           <td><span th:if="${#fields.hasErrors('all')}" th:each="err : ${#fields.errors('newAddress')}" th:text="${err}"></span></td>
           <input type="hidden" name="newAddress" id="newAddress" th:value="*{newAddress}"/>
         </tr>
+
+        <tr>
+          　<th>引っ越し月</th>
+          　<td><span th:text="*{movingMonth}"></span></td>
+          　<td><span th:if="${#fields.hasErrors('all')}" th:each="err : ${#fields.errors('movingMonth')}" th:text="${err}"></span></td>
+          　<input type="hidden" name="movingMonth" id="movingMonth" th:value="*{movingMonth}"/>
+        </tr>
+
         </tbody>
       </table>
+
       <h4>荷物情報</h4>
       <ul th:if="${#fields.hasErrors('all')}">
         <li th:each="err : ${#fields.errors('boxError')}" th:text="${err}"></li>

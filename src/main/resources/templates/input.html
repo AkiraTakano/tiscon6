@@ -57,11 +57,12 @@
           <input type="text" id="newAddress" name="newAddress" th:field="*{newAddress}" class="form-control"
                  placeholder="(例)札幌市南区1"/>
         </div>
+
+        <!-- テキスト入力 -->
         <div class="form-group">
           <label for="movingMonth">引越し月</label>
-          <select id="movingMonth" name=”movingMonth” class="form-control">
-            <option th:each="i : ${#numbers.sequence(1, 12)}" th:value="${i}" th:field="*{movingMonth}">[[${i}]]月</option>
-          </select>
+          <font size="2" color="gray">半角数字2文字以内で入力してください</font>
+          <input type="text" id="movingMonth" name="movingMonth" th:field="*{movingMonth}" class="form-control" placeholder="(例)1" />
         </div>
 
       </fieldset>

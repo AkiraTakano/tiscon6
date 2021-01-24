@@ -72,10 +72,19 @@ public class EstimateService {
         double distance = estimateDAO.getDistance(dto.getOldPrefectureId(), dto.getNewPrefectureId());
         // 小数点以下を切り捨てる
         int distanceInt = (int) Math.floor(distance);
-        System.out.println(userOrderForm.getMovingMonth());
-        System.out.println(userOrderForm.getTel());
-        System.out.println(userOrderForm.getOldPrefectureId());
 
+        //引っ越し月を取得し、係数を算出する
+        int movingMonth = Integer.parseInt(userOrderForm.getMovingMonth());
+        double monthCoefficient;
+        if(movingMonth == 3 || movingMonth == 4){
+            monthCoefficient = 1.5;
+        }
+        else if(movingMonth == 9){
+            monthCoefficient = 1.2;
+        }
+        else {
+            monthCoefficient = 1.0;
+        }
 
         // 距離当たりの料金を算出する
         int priceForDistance = distanceInt * PRICE_PER_DISTANCE;
@@ -95,11 +104,10 @@ public class EstimateService {
             priceForOptionalService = estimateDAO.getPricePerOptionalService(OptionalServiceType.WASHING_MACHINE.getCode());
         }
         if (pricePerTruck != -1) {
-            return priceForDistance + pricePerTruck + priceForOptionalService;
+            return (int)((priceForDistance + pricePerTruck) * monthCoefficient) + priceForOptionalService;
         }else{
             return -1;
         }
-
     }
 
     /**
