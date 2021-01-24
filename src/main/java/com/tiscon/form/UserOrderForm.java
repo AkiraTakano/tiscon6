@@ -59,6 +59,17 @@ public class UserOrderForm {
     @NotNull(message = "洗濯機の設置工事申し込みを選択してください")
     private boolean washingMachineInstallation;
 
+
+    private String boxError;
+
+    public String getBoxError() {
+        return boxError;
+    }
+
+    public void setBoxError(String boxError) {
+        this.boxError = boxError;
+    }
+
     //追記
     public String getMovingMonth() {return movingMonth;}
 
